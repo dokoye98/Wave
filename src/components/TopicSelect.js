@@ -12,8 +12,8 @@ function TopicSelect(){
             <h2>Pick your posion</h2>
             <div className="button-group">
             <button onClick={() => handleNavigate('/topic/talks')} className="topic-button">Talks</button>
-            <button onClick={() => handleNavigate('/topic/review')} className="topic-button">review</button>
-            <button onClick={() => handleNavigate('/topic/game')} className="topic-button">game</button>
+            <button onClick={() => handleNavigate('/topic/review')} className="topic-button">Review</button>
+            <button onClick={() => handleNavigate('/topic/walkthrough')} className="topic-button">Walkthrough</button>
             </div>
         </div>
     )

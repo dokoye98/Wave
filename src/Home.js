@@ -1,34 +1,37 @@
 import React from 'react'
 import './Home.css'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+
+    const navigate = useNavigate()
+
+    const handleNavigate = (path) =>{
+        navigate(path)
+    }
+   
     return (
         <div>
             <header>
-            <h1>Here is the MSc Compiler WebApp</h1> 
+            <h1>Wave</h1> 
             </header>
             
             <main>
+            
             <section>
-                <p>This project is primarily focused on teaching users the basics of coding using a basic compiler.</p>
-                <p>Please use this as an entry to tech.</p>
-                <p>Good luck coding!</p>
-            </section>
-        
-            <section>
-                <h2>Project Features</h2>
-                <ul>
-                    <li>Basic string compilation</li>
-                    <li>Abstract Syntax Tree (AST)</li>
-                    <li>Semantic Analysis</li>
-                    <li>Three-Address Code (TAC)</li>
-                    <li>Assembly Code</li>
-                </ul>
+                <h2>Website topics</h2>
+                <div className="homepage-container">
+            <div className="button-group">
+            <button onClick={() => handleNavigate('/topic/talks')} className="topic-button">Talks</button>
+            <button onClick={() => handleNavigate('/topic/review')} className="topic-button">Review</button>
+            <button onClick={() => handleNavigate('/topic/walkthrough')} className="topic-button">Walkthrough</button>
+            </div>
+            </div>
             </section>
             </main>
 
             <footer>
-            <p>&copy; MSc Compiler Project</p>
+            <p>&copy; Wave</p>
             </footer>
         </div>
     )

@@ -1,13 +1,13 @@
-// src/components/NewPost.js
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 function NewPost() {
   const [topic, setTopic] = useState('')
+  const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
+  const [timeLimit, setTimeLimit] = useState(60) 
   const [error, setError] = useState('')
-  const [timeLimit, setTimeLimit] = useState(60)
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -19,11 +19,15 @@ function NewPost() {
 
     try {
       const token = localStorage.getItem('auth-token')
+      
       await axios.post(
         'http://localhost:3000/newpost',
-        { topic,
+        { 
+          topic,
+          title,
           message,
-          timeLimit: 60 }, 
+          timeLimit 
+        }, 
         {
           headers: {
             'auth-token': token
@@ -32,7 +36,7 @@ function NewPost() {
       )
 
       alert('Post created successfully!')
-      navigate('/homepage') 
+      navigate('/') 
     } catch (error) {
       setError('Error creating post. Please try again.')
     } finally {
@@ -55,10 +59,10 @@ function NewPost() {
         </div>
         <div>
           <input
-            type="number"
-            value={timeLimit}
-            onChange={(e) => setTimeLimit(Number(e.target.value))} 
-            placeholder="Time Limit (minutes)"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
             required
           />
         </div>
@@ -69,6 +73,15 @@ function NewPost() {
             placeholder="Message"
             required
           ></textarea>
+        </div>
+        <div>
+          <input
+            type="number"
+            value={timeLimit}
+            onChange={(e) => setTimeLimit(Number(e.target.value))} 
+            placeholder="Time Limit (minutes)"
+            required
+          />
         </div>
         <button type="submit" disabled={loading}>
           {loading ? 'Posting...' : 'Create Post'}
